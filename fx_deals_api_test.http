@@ -1,0 +1,48 @@
+### Variables
+@baseUrl = http://localhost:8080
+@contentType = application/json
+
+### 1. Create a valid deal
+POST {{baseUrl}}/api/v1/deals
+Content-Type: {{contentType}}
+
+{
+  "id": "DEAL-001",
+  "fromCurrencyIsoCode": "USD",
+  "toCurrencyIsoCode": "EUR",
+  "dealTimestamp": "2025-08-01T12:00:00",
+  "dealAmount": 1500.75
+}
+
+### 2. Create a duplicate deal (should fail)
+POST {{baseUrl}}/api/v1/deals
+Content-Type: {{contentType}}
+
+{
+  "id": "DEAL-001",
+  "fromCurrencyIsoCode": "USD",
+  "toCurrencyIsoCode": "GBP",
+  "dealTimestamp": "2025-08-01T13:00:00",
+  "dealAmount": 2000.00
+}
+
+### 3. Create an invalid deal (validation errors)
+POST {{baseUrl}}/api/v1/deals
+Content-Type: {{contentType}}
+
+{
+  "id": "",
+  "fromCurrencyIsoCode": "US",
+  "toCurrencyIsoCode": "EURO",
+  "dealTimestamp": null,
+  "dealAmount": -100
+}
+
+### 4. Get deal by ID
+GET {{baseUrl}}/api/v1/deals/DEAL-001
+
+### 5. Get non-existent deal
+GET {{baseUrl}}/api/v1/deals/NON_EXISTENT_123
+
+### 6. Get all deals
+GET {{baseUrl}}/api/v1/deals
