@@ -77,6 +77,7 @@ cd ProgressSoft-FX-Deals
 2. Environment Configuration
 
 Create the .env file.
+
  ```bash
 POSTGRES_DB=fx_deals_db
 POSTGRES_USER=youruser
