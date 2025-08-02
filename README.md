@@ -53,13 +53,13 @@ Example
 Returns the list of all persisted deals.
 
 #### Validation Rules
-
+ ```bash
 Field	Rule
 id	Required, non-empty
 fromCurrencyIsoCode	Required, 3-letter
 toCurrencyIsoCode	Required, 3-letter
 dealAmount	Required, positive decimal
-
+ ```
 #### Testing Includes:
 
     Service layer tests
@@ -70,10 +70,10 @@ dealAmount	Required, positive decimal
 
 #### Dockerized Setup
 1. Clone the project
-
+ ```bash
 git clone https://github.com/soufianenajim99/ProgressSoft-FX-Deals
 cd ProgressSoft-FX-Deals
-
+ ```
 2. Environment Configuration
 
 Create the .env file.

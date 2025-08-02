@@ -14,8 +14,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
-
+/**
+ * Implementation of DealService interface.
+ * Handles business logic for creating and retrieving deals.
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -24,6 +26,13 @@ public class DealServiceImpl implements DealService {
     private final DealRepository dealRepository;
     private final DealMapper dealMapper;
 
+    /**
+     * Creates a new deal if it doesn't already exist.
+     *
+     * @param dealRequest the deal data from the client
+     * @return the created deal as a DTO
+     * @throws DuplicateDealException if a deal with the same ID already exists
+     */
     @Override
     public DealResponseDto createDeal(DealRequestDto dealRequest) {
         log.info("Creating deal with ID: {}", dealRequest.id());
@@ -40,6 +49,13 @@ public class DealServiceImpl implements DealService {
         return dealMapper.toDto(savedDeal);
     }
 
+    /**
+     * Retrieves a deal by its ID.
+     *
+     * @param dealId the ID of the deal to retrieve
+     * @return the corresponding deal as a DTO
+     * @throws DealNotFoundException if no deal is found with the given ID
+     */
     @Override
     public DealResponseDto getDealById(String dealId) {
         log.debug("Fetching deal with ID: {}", dealId);
@@ -55,6 +71,11 @@ public class DealServiceImpl implements DealService {
                 });
     }
 
+    /**
+     * Retrieves all deals from the repository.
+     *
+     * @return a list of all deals as DTOs
+     */
     @Override
     public List<DealResponseDto> getAllDeals() {
         log.debug("Fetching all deals");

@@ -23,6 +23,18 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+/**
+ * Unit tests for the DealServiceImpl class.
+ *
+ * Uses Mockito to mock dependencies DealRepository and DealMapper,
+ * and verifies various functionalities of the deal management service.
+ *
+ * Covered tests:
+ * - Successfully creating a new deal
+ * - Handling duplicate deal ID on creation
+ * - Retrieving a deal by ID (existing and not found cases)
+ * - Retrieving all deals (with data and empty list)
+ */
 @ExtendWith(MockitoExtension.class)
 class DealServiceImplTest {
 
@@ -38,6 +50,11 @@ class DealServiceImplTest {
     private final String DEAL_ID = "DEAL-123";
     private final LocalDateTime NOW = LocalDateTime.now();
 
+    /**
+     * Tests successful creation of a new deal.
+     * Verifies the deal is saved if the ID does not exist,
+     * and the response matches the expected data.
+     */
     @Test
     void createDeal_shouldSuccessfullyCreateNewDeal() {
         DealRequestDto request = new DealRequestDto(
@@ -60,6 +77,11 @@ class DealServiceImplTest {
         verify(dealRepository, times(1)).save(entity);
     }
 
+    /**
+     * Tests that creating a deal with an existing ID
+     * throws a DuplicateDealException,
+     * and that save is never called.
+     */
     @Test
     void createDeal_shouldThrowWhenDuplicateId() {
         DealRequestDto request = new DealRequestDto(
