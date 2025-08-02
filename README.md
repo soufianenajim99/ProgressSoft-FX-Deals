@@ -77,11 +77,11 @@ cd ProgressSoft-FX-Deals
 2. Environment Configuration
 
 Create the .env file.
-
-POSTGRES_DB=dealsdb
+ ```bash
+POSTGRES_DB=fx_deals_db
 POSTGRES_USER=youruser
 POSTGRES_PASSWORD=yourpassword
-
+   ```
 
 3. Run the stack
 
