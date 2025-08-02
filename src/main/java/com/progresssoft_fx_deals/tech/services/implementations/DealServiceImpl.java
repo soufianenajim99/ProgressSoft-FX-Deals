@@ -62,6 +62,5 @@ public class DealServiceImpl implements DealService {
         log.info("Retrieved {} deals", deals.size());
         return dealMapper.toDtoList(deals);
     }
-
 }
 
